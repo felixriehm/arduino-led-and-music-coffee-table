@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="LightTable.AutomaticControlPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LightTable"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:LightTable.ViewModel"
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:AutomaticControlViewModel}">
+
+    <Page.Resources>
+        <local:SwapBooleanConverter x:Key="SwapBooleanConverter"></local:SwapBooleanConverter>
+    </Page.Resources>
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="133*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Modi" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="64"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="187*" />
+                <ColumnDefinition Width="533*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Button x:Name="play" Content="Play" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="50,50,50,0" Height="60" FontSize="21.333" Tapped="play_Tapped" IsEnabled="{Binding TableController.ModiIsPlaying, Converter={StaticResource SwapBooleanConverter}}"/>
+                <Button x:Name="stop" Content="Stop" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="50,50,50,0" Height="60" FontSize="21.333" Tapped="stop_Tapped" IsEnabled="{Binding TableController.ModiIsPlaying}"/>
+            </StackPanel>
+            <ListView x:Name="listView" Grid.Column="1" Margin="50" Header="Modi" FontSize="21.333" Width="850" HorizontalAlignment="Left" ItemsSource="{Binding TableController.Table.Modis}" DisplayMemberPath="Name">
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>
