@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="LightTable.ConnectionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LightTable"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:LightTable.ViewModel"
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:ConnectionPageViewModel}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
+            <TextBlock Text="Verbinden" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="64" Margin="0,50,0,0"/>
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="300" Height="50" Margin="50,100,50,0" ItemsSource="{Binding TableController.Btc.Devices}" DisplayMemberPath="Name"/>
+            <Button x:Name="search" Content="Suchen" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,50,50,0" Height="60" FontSize="21.333" Width="300" Tapped="search_Tapped"/>
+            <Button x:Name="connect" Content="Verbinden" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,50,50,0" Height="60" FontSize="21.333" Width="300" Tapped="connect_Tapped"/>
+            <Button x:Name="disconnect" Content="Trennen" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,50,50,0" Height="60" FontSize="21.333" Width="300" Tapped="disconnect_Tapped"/>
+        </StackPanel>
+    </Grid>
+</Page>
