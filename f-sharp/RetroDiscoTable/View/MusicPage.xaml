@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="RetroDiscoTable.MusicPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RetroDiscoTable"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:SwapBooleanConverter x:Key="SwapBooleanConverter"></local:SwapBooleanConverter>
+    </Page.Resources>
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="133*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="title" Text="Musik" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <RelativePanel>
+            <StackPanel x:Name="musicControl">
+                <Button x:Name="play" Content="Play" HorizontalAlignment="Stretch" VerticalAlignment="Top" Tapped="play_Tapped" IsEnabled="{Binding TableController.MusicIsPlaying, Converter={StaticResource SwapBooleanConverter}}"/>
+                <Button x:Name="stop" Content="Stop" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Tapped="stop_Tapped" IsEnabled="{Binding TableController.MusicIsPlaying}"/>
+                <Button x:Name="pause" Content="Pause" HorizontalAlignment="Stretch" VerticalAlignment="Top" Tapped="pause_Tapped" IsEnabled="{Binding TableController.MusicIsPlaying}"/>
+            </StackPanel>
+            <ListView x:Name="listView" Grid.Column="1" Header="Tracks" DisplayMemberPath="Title" />
+            </RelativePanel>
+        </Grid>
+        <!-- Responsive VisualStates -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <!-- VisualState to be triggered when window width is >=720 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- Widest possible layout moves some elements around to optimize for more available width 
+                        and keeps SplitView pane always showing inline -->
+                        <Setter Target="play.Margin" Value="50,50,50,0" />
+                        <Setter Target="play.Height" Value="60" />
+                        <Setter Target="play.FontSize" Value="21.333" />
+                        <Setter Target="play.Width" Value="300" />
+                        <Setter Target="stop.Margin" Value="50,50,50,0" />
+                        <Setter Target="stop.Height" Value="60" />
+                        <Setter Target="stop.FontSize" Value="21.333" />
+                        <Setter Target="stop.Width" Value="300" />
+                        <Setter Target="pause.Margin" Value="50,50,50,0" />
+                        <Setter Target="pause.Height" Value="60" />
+                        <Setter Target="pause.FontSize" Value="21.333" />
+                        <Setter Target="pause.Width" Value="300" />
+                        <Setter Target="listView.Margin" Value="50" />
+                        <Setter Target="listView.FontSize" Value="21.333" />
+                        <Setter Target="title.FontSize" Value="64" />
+                        <Setter Target="musicControl.(RelativePanel.AlignTopWithPanel)" Value="True" />
+                        <Setter Target="musicControl.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                        <Setter Target="musicControl.(RelativePanel.AlignBottomWithPanel)" Value="True"/>
+                        <Setter Target="listView.(RelativePanel.RightOf)" Value="musicControl"/>
+                        <Setter Target="listView.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                        <Setter Target="listView.(RelativePanel.AlignBottomWithPanel)" Value="True"/>
+                        <Setter Target="listView.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <!-- VisualState to be triggered when window width is >=0 and <720 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- For the most narrow windows and phones in portrait orientation, this state collapses the SplitView pane into overlay mode
+                        and adds dynamic RelativePanel constraints that puts all elements stacked below each other -->
+                        <Setter Target="play.Margin" Value="50,50,50,0" />
+                        <Setter Target="play.Height" Value="40" />
+                        <Setter Target="play.FontSize" Value="14" />
+                        <Setter Target="play.Width" Value="200" />
+                        <Setter Target="stop.Margin" Value="50,10,50,0" />
+                        <Setter Target="stop.Height" Value="40" />
+                        <Setter Target="stop.FontSize" Value="14" />
+                        <Setter Target="stop.Width" Value="200" />
+                        <Setter Target="pause.Margin" Value="50,10,50,50" />
+                        <Setter Target="pause.Height" Value="40" />
+                        <Setter Target="pause.FontSize" Value="14" />
+                        <Setter Target="pause.Width" Value="200" />
+                        <Setter Target="listView.Margin" Value="50" />
+                        <Setter Target="listView.FontSize" Value="21.333" />
+                        <Setter Target="title.FontSize" Value="35" />
+                        <Setter Target="musicControl.(RelativePanel.AlignRightWithPanel)" Value="True" />
+                        <Setter Target="musicControl.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                        <Setter Target="musicControl.(RelativePanel.AlignBottomWithPanel)" Value="True"/>
+                        <Setter Target="listView.(RelativePanel.Above)" Value="musicControl"/>
+                        <Setter Target="listView.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                        <Setter Target="listView.(RelativePanel.AlignLeftWithPanel)" Value="True"/>
+                        <Setter Target="listView.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

@@ -1,0 +1,165 @@
+﻿<Page
+    x:Class="RetroDiscoTable.GamesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RetroDiscoTable"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:SwapBooleanConverter x:Key="SwapBooleanConverter"></local:SwapBooleanConverter>
+    </Page.Resources>
+
+    <Grid x:Name="main" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="133*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="title" Text="Spiele" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid x:Name="test" Grid.Row="1">
+            <RelativePanel x:Name="tt">
+            <StackPanel x:Name="list">
+                <ListView x:Name="listView" Margin="50,0,50,50" Header="Spiele" FontSize="21.333" DisplayMemberPath="Name"/>
+                    <Image x:Name="image" Height="170" Margin="50,0" Width="170" Source="ms-appx:///Assets/RetroDiscoTableRotation.png" HorizontalAlignment="Center"/>
+                <Image x:Name="imageEye" Height="100" Margin="0,0,0,50" Width="100" Source="ms-appx:///Assets/eye.png" HorizontalAlignment="Center"/>
+                <StackPanel x:Name="rotationPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="leftRotation" Tapped="leftRotation_Tapped" Content="R Links" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <Button x:Name="rightRotation" Tapped="rightRotation_Tapped" Content="R Rechts" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+            </StackPanel>
+
+                <Grid x:Name="gameControl">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="189*"/>
+                    <RowDefinition Height="218*"/>
+                    <RowDefinition Height="156*"/>
+                    <RowDefinition Height="397*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="up" Content="Hoch" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="right_Tapped" IsEnabled="{Binding TableController.ModiIsPlaying}" Grid.Row="0"/>
+                <Button x:Name="down" Content="Runter" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="left_Tapped" IsEnabled="{Binding TableController.ModiIsPlaying}" Grid.Row="2"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                    <Button x:Name="left" Content="Links" HorizontalAlignment="Left" VerticalAlignment="Center" Tapped="up_Tapped" IsEnabled="{Binding TableController.ModiIsPlaying}"/>
+                    <Button x:Name="right" Content="Rechts" HorizontalAlignment="Right" VerticalAlignment="Center" Tapped="down_Tapped" IsEnabled="{Binding TableController.ModiIsPlaying}" Margin="60,0,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0,0.333,0,0" HorizontalAlignment="Center">
+                    <Button x:Name="start" Content="Starten" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="start_Tapped" IsEnabled="{Binding TableController.ModiIsPlaying, Converter={StaticResource SwapBooleanConverter}}" Grid.Row="3"/>
+                    <Button x:Name="stop" Content="Stop" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="stop_Tapped" IsEnabled="{Binding TableController.ModiIsPlaying}"/>
+                    <Button x:Name="action" Content="Aktion" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="action_Tapped" IsEnabled="{Binding TableController.ModiIsPlaying}"/>
+                </StackPanel>
+            </Grid>
+            </RelativePanel>
+        </Grid>
+        <!-- Responsive VisualStates -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <!-- VisualState to be triggered when window width is >=720 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- Widest possible layout moves some elements around to optimize for more available width 
+                        and keeps SplitView pane always showing inline -->
+                        <Setter Target="up.Width" Value="300" />
+                        <Setter Target="up.Height" Value="60" />
+                        <Setter Target="up.FontSize" Value="21.333" />
+                        <Setter Target="down.Width" Value="300" />
+                        <Setter Target="down.Height" Value="60" />
+                        <Setter Target="down.FontSize" Value="21.333" />
+                        <Setter Target="left.Width" Value="300" />
+                        <Setter Target="left.Height" Value="60" />
+                        <Setter Target="left.FontSize" Value="21.333" />
+                        <Setter Target="right.Width" Value="300" />
+                        <Setter Target="right.Height" Value="60" />
+                        <Setter Target="right.FontSize" Value="21.333" />
+                        <Setter Target="start.Width" Value="150" />
+                        <Setter Target="start.Height" Value="60" />
+                        <Setter Target="start.FontSize" Value="21.333" />
+                        <Setter Target="start.Margin" Value="0,0,0,0" />
+                        <Setter Target="stop.Width" Value="150" />
+                        <Setter Target="stop.Height" Value="60" />
+                        <Setter Target="stop.FontSize" Value="21.333" />
+                        <Setter Target="stop.Margin" Value="60,0,0,0" />
+                        <Setter Target="action.Width" Value="150" />
+                        <Setter Target="action.Height" Value="60" />
+                        <Setter Target="action.FontSize" Value="21.333" />
+                        <Setter Target="action.Margin" Value="60,0,0,0" />
+                        <Setter Target="leftRotation.Width" Value="150" />
+                        <Setter Target="leftRotation.Height" Value="60" />
+                        <Setter Target="leftRotation.FontSize" Value="21.333" />
+                        <Setter Target="leftRotation.Margin" Value="20,0,10,0" />
+                        <Setter Target="rightRotation.Width" Value="150" />
+                        <Setter Target="rightRotation.Height" Value="60" />
+                        <Setter Target="rightRotation.FontSize" Value="21.333" />
+                        <Setter Target="rightRotation.Margin" Value="0,0,20,0" />
+                        <Setter Target="image.Visibility" Value="Visible" />
+                        <Setter Target="imageEye.Visibility" Value="Visible" />
+                        <Setter Target="rotationPanel.Visibility" Value="Visible" />
+                        <Setter Target="title.FontSize" Value="64" />
+                        <Setter Target="list.(RelativePanel.AlignTopWithPanel)" Value="True" />
+                        <Setter Target="list.(RelativePanel.AlignBottomWithPanel)" Value="True" />
+                        <Setter Target="list.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                        <Setter Target="gameControl.(RelativePanel.RightOf)" Value="list" />
+                        <Setter Target="gameControl.(RelativePanel.AlignRightWithPanel)" Value="True" />
+                        <Setter Target="gameControl.(RelativePanel.AlignBottomWithPanel)" Value="True" />
+                        <Setter Target="gameControl.(RelativePanel.AlignTopWithPanel)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <!-- VisualState to be triggered when window width is >=0 and <720 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- For the most narrow windows and phones in portrait orientation, this state collapses the SplitView pane into overlay mode
+                        and adds dynamic RelativePanel constraints that puts all elements stacked below each other -->
+                        <Setter Target="up.Width" Value="100" />
+                        <Setter Target="up.Height" Value="40" />
+                        <Setter Target="up.FontSize" Value="15" />
+                        <Setter Target="down.Width" Value="100" />
+                        <Setter Target="down.Height" Value="40" />
+                        <Setter Target="down.FontSize" Value="15" />
+                        <Setter Target="left.Width" Value="100" />
+                        <Setter Target="left.Height" Value="40" />
+                        <Setter Target="left.FontSize" Value="15" />
+                        <Setter Target="right.Width" Value="100" />
+                        <Setter Target="right.Height" Value="40" />
+                        <Setter Target="right.FontSize" Value="15" />
+                        <Setter Target="start.Width" Value="100" />
+                        <Setter Target="start.Height" Value="40" />
+                        <Setter Target="start.FontSize" Value="15" />
+                        <Setter Target="start.Margin" Value="0,0,0,0" />
+                        <Setter Target="stop.Width" Value="100" />
+                        <Setter Target="stop.Height" Value="40" />
+                        <Setter Target="stop.FontSize" Value="15" />
+                        <Setter Target="stop.Margin" Value="10,0,0,0" />
+                        <Setter Target="action.Width" Value="100" />
+                        <Setter Target="action.Height" Value="40" />
+                        <Setter Target="action.FontSize" Value="15" />
+                        <Setter Target="action.Margin" Value="10,0,0,0" />
+                        <Setter Target="leftRotation.Width" Value="150" />
+                        <Setter Target="leftRotation.Height" Value="60" />
+                        <Setter Target="leftRotation.FontSize" Value="21.333" />
+                        <Setter Target="leftRotation.Margin" Value="20,0,10,0" />
+                        <Setter Target="rightRotation.Width" Value="150" />
+                        <Setter Target="rightRotation.Height" Value="60" />
+                        <Setter Target="rightRotation.FontSize" Value="21.333" />
+                        <Setter Target="rightRotation.Margin" Value="0,0,20,0" />
+                        <Setter Target="image.Visibility" Value="Collapsed" />
+                        <Setter Target="imageEye.Visibility" Value="Collapsed" />
+                        <Setter Target="rotationPanel.Visibility" Value="Collapsed" />
+                        <Setter Target="title.FontSize" Value="35" />
+                        <Setter Target="list.(RelativePanel.AlignTopWithPanel)" Value="True" />
+                        <Setter Target="list.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                        <Setter Target="list.(RelativePanel.AlignRightWithPanel)" Value="True" />
+                        <Setter Target="gameControl.(RelativePanel.Below)" Value="list" />
+                        <Setter Target="gameControl.(RelativePanel.AlignBottomWithPanel)" Value="True" />
+                        <Setter Target="gameControl.(RelativePanel.AlignRightWithPanel)" Value="True" />
+                        <Setter Target="gameControl.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>
