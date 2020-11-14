@@ -1,0 +1,113 @@
+﻿<Page
+    x:Class="RetroDiscoTable.ManuelControlPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RetroDiscoTable"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:HueToColorConverter x:Key="HueToColorConverter"></local:HueToColorConverter>
+    </Page.Resources>
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="133*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="title" Text="Manuelle Ansteuerung" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="187*" />
+                <ColumnDefinition Width="533*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <GridView x:Name="colorSelection" Height="200" ItemsSource="{Binding ColorSelection}" Header="Farbenauswahl" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid x:Name="colorSelectionGrid" Height="50" Width="50" Tapped="Grid_Tapped_1">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="{Binding Color}"></SolidColorBrush>
+                                </Grid.Background>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+                <Button x:Name="allOn" Content="Alle färben" HorizontalAlignment="Stretch" VerticalAlignment="Top" Tapped="allOn_Tapped" SizeChanged="allOn_SizeChanged"/>
+                <Image x:Name="image" Height="170" Margin="0,50,0,0" Width="170" Source="ms-appx:///Assets/RetroDiscoTableRotation.png" HorizontalAlignment="Center"/>
+                <Image x:Name="imageEye" Height="100" Margin="0" Width="100" Source="ms-appx:///Assets/eye.png" HorizontalAlignment="Center"/>
+                <StackPanel x:Name="rotationPanel" Orientation="Horizontal">
+                    <AppBarButton x:Name="leftRotation" HorizontalAlignment="Center" Label="" VerticalAlignment="Center" Width="79" Icon="Rotate" RenderTransformOrigin="0.5,0.5" Height="57" Tapped="leftRotation_Tapped" BorderThickness="0">
+                        <AppBarButton.RenderTransform>
+                            <CompositeTransform ScaleX="-1" ScaleY="1" TranslateX="50"/>
+                        </AppBarButton.RenderTransform>
+                    </AppBarButton>
+                    <AppBarButton x:Name="rightRotation" HorizontalAlignment="Center" Label="" VerticalAlignment="Center" Width="79" Icon="Rotate" RenderTransformOrigin="0.5,0.5" Height="57" Tapped="rightRotation_Tapped" BorderThickness="0,0,0,1">
+                        <AppBarButton.RenderTransform>
+                            <CompositeTransform TranslateX="150" ScaleX="1" ScaleY="1"/>
+                        </AppBarButton.RenderTransform>
+                    </AppBarButton>
+                </StackPanel>
+            </StackPanel>
+            <GridView x:Name="gridView" Grid.Column="1" SelectionMode="None" ScrollViewer.VerticalScrollBarVisibility="Disabled" FontSize="21.333" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="tile" Height="90" Width="90" Tapped="Grid_Tapped">
+                            <Grid.Background>
+                                <SolidColorBrush Color="{Binding Hue, Converter={StaticResource HueToColorConverter}}"></SolidColorBrush>
+                            </Grid.Background>
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </Grid>
+        <!-- Responsive VisualStates -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <!-- VisualState to be triggered when window width is >=720 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- Widest possible layout moves some elements around to optimize for more available width 
+                        and keeps SplitView pane always showing inline -->
+                        <Setter Target="title.FontSize" Value="64" />
+                        <Setter Target="colorSelection.Margin" Value="50,0" />
+                        <Setter Target="colorSelection.FontSize" Value="21.333" />
+                        <Setter Target="allOn.Height" Value="40" />
+                        <Setter Target="allOn.FontSize" Value="16" />
+                        <Setter Target="allOn.Margin" Value="50,50,50,0" />
+                        <Setter Target="image.Visibility" Value="Visible" />
+                        <Setter Target="imageEye.Visibility" Value="Visible" />
+                        <Setter Target="rotationPanel.Visibility" Value="Visible" />
+                        <Setter Target="gridView.Width" Value="760" />
+                        <Setter Target="gridView.Margin" Value="50,50,50,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <!-- VisualState to be triggered when window width is >=0 and <720 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- For the most narrow windows and phones in portrait orientation, this state collapses the SplitView pane into overlay mode
+                        and adds dynamic RelativePanel constraints that puts all elements stacked below each other -->
+                        <Setter Target="title.FontSize" Value="30" />
+                        <Setter Target="colorSelection.Margin" Value="20,0" />
+                        <Setter Target="colorSelection.FontSize" Value="16" />
+                        <Setter Target="allOn.Height" Value="30" />
+                        <Setter Target="allOn.FontSize" Value="12" />
+                        <Setter Target="allOn.Margin" Value="50,0,50,0" />
+                        <Setter Target="image.Visibility" Value="Collapsed" />
+                        <Setter Target="imageEye.Visibility" Value="Collapsed" />
+                        <Setter Target="rotationPanel.Visibility" Value="Collapsed" />
+                        <Setter Target="gridView.Width" Value="400" />
+                        <Setter Target="gridView.Margin" Value="10,10,10,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>
