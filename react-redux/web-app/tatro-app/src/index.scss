@@ -1,0 +1,14 @@
+// Bootstrap custom
+@import './bootstrap-custom.scss';
+
+// Components
+@import './Component/tile.scss';
+@import './Component/connectionButton.scss';
+@import './Component/navbar.scss';
+
+// Container
+@import './Container/draw.scss';
+@import './Container/shows.scss';
+@import './Container/games.scss';
+@import './Container/debug.scss';
+@import './Container/settings.scss';

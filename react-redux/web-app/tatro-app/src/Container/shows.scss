@@ -1,0 +1,38 @@
+.shows-play-icon {
+  padding-right: 8px;
+  &::before {
+    font-family: "Font Awesome 5 Solid";
+    font-weight: 900;
+    content: "\f04b";
+    font-size: 14px;
+  }
+}
+
+.shows-pause-icon {
+  padding-right: 8px;
+  &::before {
+    font-family: "Font Awesome 5 Solid";
+    font-weight: 900;
+    content: "\f04c";
+    font-size: 14px;
+  }
+}
+
+.shows-stop-icon {
+  padding-right: 8px;
+  &::before {
+    font-family: "Font Awesome 5 Solid";
+    font-weight: 900;
+    content: "\f04d";
+    font-size: 14px;
+  }
+}
+
+.animations-selected-color {
+  display: inline-block;
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+  vertical-align: bottom;
+  margin-left: 4px;
+}

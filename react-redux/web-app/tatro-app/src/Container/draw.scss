@@ -1,0 +1,80 @@
+.table {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    place-items: start;
+    grid-column-gap: 4px;
+    grid-row-gap: 4px;
+    padding: 12px;
+    background: rgb(105, 84, 51);
+}
+
+.colorSelection {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    place-items: start;
+    grid-column-gap: 12px;
+    grid-row-gap: 12px;
+    padding: 12px;
+    background: rgb(165, 165, 165);
+}
+.color-picker {
+    display: none;
+}
+
+.color-picker-open {
+    display: block;
+}
+
+.tools-selected-color {
+    display: inline-block;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    vertical-align: bottom;
+    margin-left: 4px;
+}
+
+.tools-brush-icon {
+    &::before {
+        font-family: "Font Awesome 5 Solid";
+        font-weight: 900;
+        content: "\f1fc";
+        font-size: 14px;
+      }
+}
+
+.tools-bucket-icon {
+    &::before {
+        font-family: "Font Awesome 5 Solid";
+        font-weight: 900;
+        content: "\f575";
+        font-size: 14px;
+      }
+}
+
+.tools-ereaser-icon {
+    &::before {
+        font-family: "Font Awesome 5 Solid";
+        font-weight: 900;
+        content: "\f12d";
+        font-size: 14px;
+      }
+}
+
+.tools-tint-icon {
+    &::before {
+        font-family: "Font Awesome 5 Solid";
+        font-weight: 900;
+        content: "\f043";
+        font-size: 14px;
+      }
+}
+
+.tools-undo-all-icon {
+    &::before {
+        font-family: "Font Awesome 5 Solid";
+        font-weight: 900;
+        content: "\f0e2";
+        font-size: 14px;
+      }
+}

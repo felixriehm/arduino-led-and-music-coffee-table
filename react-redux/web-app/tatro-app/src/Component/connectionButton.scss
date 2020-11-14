@@ -1,0 +1,10 @@
+.connection-btn-icon {
+  padding-right: 8px;
+  
+  &::before {
+    font-family: "Font Awesome 5 Solid";
+    font-weight: 900;
+    content: "\f011";
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,9 @@
+.settings-save-icon {
+    padding-right: 8px;
+  &::before {
+    font-family: "Font Awesome 5 Solid";
+    font-weight: 900;
+    content: "\f0c7";
+    font-size: 14px;
+  }
+  }

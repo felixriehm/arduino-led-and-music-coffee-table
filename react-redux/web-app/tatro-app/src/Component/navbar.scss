@@ -1,0 +1,104 @@
+.nav-item-icon {
+  font-family: "Font Awesome 5 Solid";
+  font-weight: 900;
+  padding-right: 4px;
+  font-size: 14px;
+}
+
+.nav-music-icon {
+  .nav-link:hover & {
+    &::before {
+      color: rgb(93, 186, 76);
+    }
+  }
+
+  .active & {
+    &::before {
+      color: rgb(93, 186, 76);
+    }
+  }
+
+  &::before {
+    content: "\f001";
+  }
+}
+
+.nav-settings-icon {
+  &::before {
+    content: "\f013";
+  }
+}
+
+.nav-games-icon {
+  .nav-link:hover & {
+    &::before {
+      color: rgb(149, 76, 186);
+    }
+  }
+
+  .active & {
+    &::before {
+      color: rgb(149, 76, 186);
+    }
+  }
+
+  &::before {
+    content: "\f11b";
+  }
+}
+
+.nav-shows-icon {
+  .nav-link:hover & {
+    &::before {
+      color: rgb(56, 158, 160);
+    }
+  }
+
+  .active & {
+    &::before {
+      color: rgb(56, 158, 160);
+    }
+  }
+
+  &::before {
+    content: "\f008";
+  }
+}
+
+.nav-draw-icon {
+  .nav-link:hover & {
+    &::before {
+      color: rgb(171, 134, 79);
+    }
+  }
+
+  .active & {
+    &::before {
+      color: rgb(171, 134, 79);
+    }
+  }
+
+  &::before {
+    content: "\f53f";
+  }
+}
+
+.nav-bluetooth-icon {
+  .nav-link:hover & {
+    &::before {
+      color: rgb(0, 114, 187);
+    }
+  }
+
+  .active & {
+    &::before {
+      color: rgb(0, 114, 187);
+    }
+  }
+
+  &::before {
+    font-family: "Font Awesome 5 Brands";
+    font-weight: normal;
+    content: "\f293";
+  }
+}

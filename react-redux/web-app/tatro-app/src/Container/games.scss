@@ -1,0 +1,26 @@
+.btn-up {
+  grid-area: up;
+}
+.btn-down {
+  grid-area: down;
+}
+.btn-right {
+  grid-area: right;
+}
+.btn-left {
+  grid-area: left;
+}
+
+.btn-action {
+  grid-area: action;
+}
+
+.game-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    ". up . . ."
+    "left . right . action"
+    ". down . . .";
+}
